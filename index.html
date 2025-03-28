@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI探索导航 | AI Navigation Hub</title>
+    <meta name="description" content="精选AI工具导航站，发现最新最优质的人工智能工具和资源。| Curated AI tools navigation, discover the latest and best AI resources.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+        }
+
+        /* 左侧导航栏样式 */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            background: #2c2e2f;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 20px 0;
+            color: #fff;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid #3c3e3f;
+        }
+
+        .sidebar-header img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .sidebar-header h1 {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .sidebar-menu li {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu li:hover {
+            background: #3c3e3f;
+        }
+
+        .sidebar-menu li a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar-menu li a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-menu li.active {
+            background: #3c3e3f;
+        }
+
+        .sidebar-menu li.active a {
+            color: #fff;
+        }
+
+        /* 主要内容区域样式 */
+        .main-content {
+            margin-left: 240px;
+            padding: 30px;
+            width: calc(100% - 240px);
+        }
+
+        .section-title {
+            font-size: 16px;
+            color: #333;
+            margin: 30px 0 20px;
+            padding-left: 10px;
+            border-left: 3px solid #007bff;
+        }
+
+        .section-title .en {
+            font-size: 14px;
+            color: #666;
+            margin-left: 8px;
+            font-weight: normal;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .site-card {
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .site-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .site-card img {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            margin-right: 12px;
+        }
+
+        .site-info {
+            flex: 1;
+        }
+
+        .site-info h3 {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .site-info h3 .en {
+            font-size: 12px;
+            color: #666;
+            margin-left: 8px;
+        }
+        
+        .site-info p {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+        }
+        
+        .site-info p .en {
+            display: block;
+            font-size: 11px;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-240px);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sidebar-menu li a .en {
+            font-size: 12px;
+            margin-left: 4px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧导航栏 -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <img src="https://your-logo-url.com/logo.png" alt="AI导航">
+            <h1>AI探索导航 <span class="en">AI Navigation Hub</span></h1>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="active">
+                <a href="#ai-chat">
+                    <i class="fas fa-comments"></i>
+                    AI 问答 <span class="en">AI Chat</span>
+                </a>
+            </li>
+            <li>
+                <a href="#ai-draw">
+                    <i class="fas fa-paint-brush"></i>
+                    AI 绘画 <span class="en">AI Art</span>
+                </a>
+            </li>
+            <li>
+                <a href="#ai-video">
+                    <i class="fas fa-video"></i>
+                    AI 视频 <span class="en">AI Video</span>
+                </a>
+            </li>
+            <li>
+                <a href="#ai-audio">
+                    <i class="fas fa-music"></i>
+                    AI 音频 <span class="en">AI Audio</span>
+                </a>
+            </li>
+            <li>
+                <a href="#ai-write">
+                    <i class="fas fa-pen"></i>
+                    AI 创作 <span class="en">AI Writing</span>
+                </a>
+            </li>
+            <li>
+                <a href="#ai-code">
+                    <i class="fas fa-code"></i>
+                    AI 编程 <span class="en">AI Coding</span>
+                </a>
+            </li>
+            <li>
+                <a href="#ai-office">
+                    <i class="fas fa-briefcase"></i>
+                    AI 办公 <span class="en">AI Office</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <section id="ai-chat">
+            <h2 class="section-title">AI 问答 <span class="en">AI Chat</span></h2>
+            <div class="grid-container">
+                <div class="site-card">
+                    <img src="https://www.deepseek.com/favicon.ico" alt="DeepSeek">
+                    <div class="site-info">
+                        <h3>DeepSeek <span class="en">DeepSeek AI</span></h3>
+                        <p>国产最强的深度思考大模型 <span class="en">China's leading deep thinking AI model</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://kimi.moonshot.cn/favicon.ico" alt="Kimi">
+                    <div class="site-info">
+                        <h3>Kimi <span class="en">Kimi AI</span></h3>
+                        <p>长文本和深度思考AI大模型 <span class="en">Long-text and deep thinking AI model</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://www.doubao.com/favicon.ico" alt="豆包">
+                    <div class="site-info">
+                        <h3>豆包</h3>
+                        <p>字节推出的AI全能助手</p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://www.tongyi.aliyun.com/favicon.ico" alt="通义千问">
+                    <div class="site-info">
+                        <h3>通义千问</h3>
+                        <p>阿里推出的AI全能助手</p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://zhipu.ai/favicon.ico" alt="智谱清言">
+                    <div class="site-info">
+                        <h3>智谱清言</h3>
+                        <p>智谱推出的AI全能助手</p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://wenxin.baidu.com/favicon.ico" alt="文心一言">
+                    <div class="site-info">
+                        <h3>文心一言</h3>
+                        <p>百度推出的AI全能助手</p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://xinghuo.xfyun.cn/favicon.ico" alt="讯飞星火">
+                    <div class="site-info">
+                        <h3>讯飞星火</h3>
+                        <p>科大讯飞推出的AI全能助手</p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://360ai.com/favicon.ico" alt="纳米AI">
+                    <div class="site-info">
+                        <h3>纳米AI</h3>
+                        <p>360推出的AI大模型集合工具</p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://www.minimax.chat/favicon.ico" alt="秘塔AI">
+                    <div class="site-info">
+                        <h3>秘塔AI</h3>
+                        <p>没有广告的AI搜索引擎</p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://www.minimax.chat/favicon.ico" alt="海螺AI">
+                    <div class="site-info">
+                        <h3>海螺AI</h3>
+                        <p>Minimax推出的AI全能助手</p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://chat.openai.com/favicon.ico" alt="ChatGPT">
+                    <div class="site-info">
+                        <h3>ChatGPT</h3>
+                        <p>国外OpenAI推出的AI大模型</p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://gemini.google.com/favicon.ico" alt="Gemini">
+                    <div class="site-info">
+                        <h3>Gemini</h3>
+                        <p>国外谷歌推出的大语言模型</p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://claude.ai/favicon.ico" alt="Claude">
+                    <div class="site-info">
+                        <h3>Claude</h3>
+                        <p>国外热门长文本大语言模型</p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://grok.x.ai/favicon.ico" alt="Grok">
+                    <div class="site-info">
+                        <h3>Grok</h3>
+                        <p>国外马斯克推出的大语言模型</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-draw">
+            <h2 class="section-title">AI 绘画 <span class="en">AI Art</span></h2>
+            <div class="grid-container">
+                <div class="site-card">
+                    <img src="https://dream.ai/favicon.ico" alt="即梦AI">
+                    <div class="site-info">
+                        <h3>即梦AI <span class="en">Dream AI</span></h3>
+                        <p>抖音旗下AI图像视频创作工具 <span class="en">ByteDance's AI image and video creation tool</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://kelingai.com/favicon.ico" alt="可灵AI">
+                    <div class="site-info">
+                        <h3>可灵AI <span class="en">Keling AI</span></h3>
+                        <p>快手旗下AI图像视频创作平台 <span class="en">Kuaishou's AI image and video creation platform</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://shangtu.com/favicon.ico" alt="商汤秒画">
+                    <div class="site-info">
+                        <h3>商汤秒画 <span class="en">SenseTime Draw</span></h3>
+                        <p>免费的AI图片生成平台 <span class="en">Free AI image generation platform</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://tongyi.aliyun.com/wanxiang/favicon.ico" alt="通义万相">
+                    <div class="site-info">
+                        <h3>通义万相 <span class="en">Tongyi Wanxiang</span></h3>
+                        <p>阿里旗下AI创意作画平台 <span class="en">Alibaba's AI creative art platform</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://mj.mojie.me/favicon.ico" alt="MJ中文站">
+                    <div class="site-info">
+                        <h3>MJ中文站 <span class="en">MJ Chinese</span></h3>
+                        <p>集成多个国外主流AI绘画工具 <span class="en">Integration of major international AI art tools</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://wuji.ai/favicon.ico" alt="无极AI">
+                    <div class="site-info">
+                        <h3>无极AI <span class="en">Wuji AI</span></h3>
+                        <p>一款可以反推提示词的AI绘画工具 <span class="en">AI art tool with prompt reverse engineering</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://tusi.art/favicon.ico" alt="吐司AI">
+                    <div class="site-info">
+                        <h3>吐司AI <span class="en">Tusi AI</span></h3>
+                        <p>AI绘画模型社区和在线生图平台 <span class="en">AI art model community and online generation platform</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://heiyou.ai/favicon.ico" alt="堆友AI">
+                    <div class="site-info">
+                        <h3>堆友AI <span class="en">Heiyou AI</span></h3>
+                        <p>多风格AI绘画生成器 <span class="en">Multi-style AI art generator</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://haiart.com/favicon.ico" alt="海艺AI">
+                    <div class="site-info">
+                        <h3>海艺AI <span class="en">HaiArt AI</span></h3>
+                        <p>AI绘画生成器，每日免费生成150张 <span class="en">AI art generator, 150 free generations daily</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://qiyu.ai/favicon.ico" alt="奇域">
+                    <div class="site-info">
+                        <h3>奇域 <span class="en">Qiyu</span></h3>
+                        <p>中式审美风AI绘画创作平台 <span class="en">Chinese aesthetic AI art creation platform</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://yunjing.ai/favicon.ico" alt="云景AI">
+                    <div class="site-info">
+                        <h3>云景AI <span class="en">Yunjing AI</span></h3>
+                        <p>免费的在线AI创意绘画工具 <span class="en">Free online AI creative art tool</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://whee.com/favicon.ico" alt="WHEE">
+                    <div class="site-info">
+                        <h3>WHEE <span class="en">WHEE</span></h3>
+                        <p>美图推出的高品质AI素材生成器 <span class="en">High-quality AI asset generator by Meitu</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://bridge.design/favicon.ico" alt="搞定设计">
+                    <div class="site-info">
+                        <h3>搞定设计 <span class="en">Gaoding Design</span></h3>
+                        <p>在线平面设计AI工具 <span class="en">Online graphic design AI tool</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://meitu.com/favicon.ico" alt="美图商拍">
+                    <div class="site-info">
+                        <h3>美图商拍 <span class="en">Meitu Commercial</span></h3>
+                        <p>一键生成高质量AI商品图 <span class="en">One-click high-quality AI product image generation</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://photostudio.ai/favicon.ico" alt="PhotoStudio AI">
+                    <div class="site-info">
+                        <h3>PhotoStudio AI <span class="en">PhotoStudio AI</span></h3>
+                        <p>高通量的AI模特和商品图 <span class="en">High-throughput AI model and product images</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://aigc.yijiupifu.com/favicon.ico" alt="可图AI试衣">
+                    <div class="site-info">
+                        <h3>可图AI试衣 <span class="en">Ketu AI Try-on</span></h3>
+                        <p>免费的AI换衣工具 <span class="en">Free AI clothing try-on tool</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://huamei.com/favicon.ico" alt="绘蜜">
+                    <div class="site-info">
+                        <h3>绘蜜 <span class="en">Huamei</span></h3>
+                        <p>AI电商图片处理工具 <span class="en">AI e-commerce image processing tool</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://yijietu.com/favicon.ico" alt="一键抠图">
+                    <div class="site-info">
+                        <h3>一键抠图 <span class="en">One-click Background Removal</span></h3>
+                        <p>抠图、换背景、图片压缩 <span class="en">Background removal, replacement and image compression</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://yichu.ai/favicon.ico" alt="一键擦除">
+                    <div class="site-info">
+                        <h3>一键擦除 <span class="en">One-click Eraser</span></h3>
+                        <p>无需注册的免费图片擦除工具 <span class="en">Free image erasing tool, no registration required</span></p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://chatps.com/favicon.ico" alt="ChatPS">
+                    <div class="site-info">
+                        <h3>ChatPS <span class="en">ChatPS</span></h3>
+                        <p>免费的聊天式在线P图工具 <span class="en">Free chat-based online photo editing tool</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-video">
+            <h2 class="section-title">AI 视频</h2>
+            <div class="grid-container">
+                <div class="site-card">
+                    <img src="https://example.com/icon1.png" alt="即梦AI">
+                    <div class="site-info">
+                        <h3>即梦AI</h3>
+                        <p>抖音旗下免费AI绘画和视频生成工具</p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://example.com/icon2.png" alt="可灵AI">
+                    <div class="site-info">
+                        <h3>可灵AI</h3>
+                        <p>快手旗下AI图片/视频创作平台</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-audio">
+            <h2 class="section-title">AI 音频</h2>
+            <div class="grid-container">
+                <div class="site-card">
+                    <img src="https://example.com/icon3.png" alt="Suno中文站">
+                    <div class="site-info">
+                        <h3>Suno中文站</h3>
+                        <p>AI音乐创作，Suno的国产版</p>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <img src="https://example.com/icon4.png" alt="网易天音">
+                    <div class="site-info">
+                        <h3>网易天音</h3>
+                        <p>网易推出的一站式AI音乐创作工具</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 激活当前菜单项
+        const sections = document.querySelectorAll('section');
+        const menuItems = document.querySelectorAll('.sidebar-menu li');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            menuItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.querySelector('a').getAttribute('href').slice(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
